@@ -47,6 +47,7 @@ The application is fully responsive and adapts seamlessly to:
 
 ## 📸Screenshot of the web application
 
+<img src="Screenshot 2026-01-17 100819.png">
 
 
 ## What I Learned
