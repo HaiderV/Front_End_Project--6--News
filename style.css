@@ -1,0 +1,511 @@
+:root {
+    --bg-color: #121212;
+    --surface-color: #1e1e1e;
+    --text-primary: #e0e0e0;
+    --text-secondary: #a0a0a0;
+    --accent-color: #bb86fc;
+    --accent-hover: #b984f8; /* Slightly lighter for hover */
+    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    --card-hover-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    --font-main: 'Outfit', sans-serif;
+    --transition-speed: 0.3s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Header & Nav */
+.app-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(18, 18, 18, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0;
+    gap: 1rem;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: var(--text-primary);
+}
+
+.highlight {
+    color: var(--accent-color);
+}
+
+.category-nav {
+    display: flex;
+    gap: 1.5rem;
+    background: var(--surface-color);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    box-shadow: var(--card-shadow);
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-family: var(--font-main);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0.5rem 1.5rem;
+    border-radius: 25px;
+    transition: all var(--transition-speed) ease;
+}
+
+.nav-btn:hover {
+    color: var(--text-primary);
+}
+
+.nav-btn.active {
+    background-color: var(--accent-color);
+    color: #000;
+    box-shadow: 0 2px 8px rgba(187, 134, 252, 0.4);
+}
+
+/* Main Content */
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+    position: relative; /* For info tooltip positioning */
+    min-height: 80vh; /* Ensure footer pushes down */
+}
+
+/* Info Tooltip */
+.info-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 200; /* Ensure tooltip (child) is above header (100) */
+}
+
+.info-btn {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--surface-color);
+    border: 1px solid var(--text-secondary);
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: bold; /* 'i' usually serif/bold */
+    font-family: serif; 
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.info-btn:hover {
+    background: var(--accent-color);
+    color: #000;
+    border-color: var(--accent-color);
+}
+
+.info-btn.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.8); /* Slight shrink effect */
+}
+
+.info-tooltip {
+    position: absolute;
+    top: 50%;
+    right: 35px; /* Show to the left of the button */
+    transform: translateY(-50%) translateX(10px);
+    width: 280px;
+    background: #333;
+    color: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    pointer-events: none;
+    line-height: 1.4;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.info-btn:hover + .info-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) translateX(0);
+}
+
+/* Footer */
+.app-footer {
+    background: var(--surface-color);
+    padding: 2rem;
+    text-align: center;
+    margin-top: 4rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.app-footer p {
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.app-footer .credits {
+    font-size: 0.8rem;
+    opacity: 0.7;
+    margin-top: 1rem;
+}
+
+.app-footer a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.app-footer a:hover {
+    text-decoration: underline;
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+/* News Card */
+.news-card {
+    background-color: var(--surface-color);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    transition: transform var(--transition-speed) cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow var(--transition-speed) ease;
+    cursor: pointer;
+    position: relative;
+    height: 350px; /* Fixed height for uniformity */
+    display: flex;
+    flex-direction: column;
+}
+
+.news-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--card-hover-shadow);
+}
+
+.card-image-container {
+    height: 200px; /* Fixed image height */
+    width: 100%;
+    overflow: hidden;
+}
+
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.news-card:hover .card-image {
+    transform: scale(1.05);
+}
+
+.card-content {
+    padding: 1.25rem;
+    flex-grow: 1;
+    display: flex;
+    align-items: center; /* Center title vertically if short */
+    background: var(--surface-color);
+    z-index: 2;
+    position: relative;
+}
+
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Hover Overlay (The "New Div") */
+.news-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(30, 30, 30, 0.98); /* Almost opaque to read text clearly */
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    z-index: 5;
+    border-radius: 16px; 
+}
+
+/* On card hover, show the overlay */
+.news-card:hover .news-overlay {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.overlay-date {
+    font-size: 0.85rem;
+    color: var(--accent-color);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.overlay-description {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    overflow-y: auto; /* Allow scrolling if description is very long */
+    max-height: 200px;
+    /* Hide scrollbar for cleaner look */
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-color) transparent;
+}
+
+.read-more {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    align-self: flex-start;
+    text-decoration: none; /* Remove underline */
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+.read-more:hover {
+    border-color: var(--accent-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .app-header {
+        align-items: center;
+        padding: 0.5rem 1rem; /* Slightly tighter padding */
+    }
+
+    .info-container {
+        padding-right: 0.5rem; /* Ensure it doesn't touch edge */
+        margin-bottom: 0.5rem;
+    }
+
+    .category-nav {
+        width: 100%;
+        justify-content: center; /* Center items as requested */
+        flex-wrap: wrap; /* Allow wrap if tiny, or we rely on shrinking */
+        padding: 0.5rem;
+        gap: 2vw; /* Fluid gap */
+        background: transparent; /* Clean look on mobile */
+        box-shadow: none;
+    }
+
+    .nav-btn {
+        flex-shrink: 1; /* Allow shrinking */
+        font-size: clamp(0.75rem, 3.5vw, 1rem); /* Fluid font size using vw */
+        padding: 0.4rem 2vw; /* Fluid padding */
+    }
+    
+    main {
+        margin: 1rem auto;
+        padding: 0 1rem;
+    }
+    
+    .logo {
+        font-size: 1.5rem;
+    }
+    
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .sidebar {
+        width: 100%;
+        right: -100%;
+    }
+}
+
+@media (min-width: 769px) {
+    .app-header {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 1rem 2rem;
+    }
+    
+    .category-nav {
+         /* Ensure desktop is also centered if flexible, or keep default */
+         justify-content: center; 
+    }
+}
+
+/* Sidebar & Menu */
+.menu-btn {
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.menu-btn:hover {
+    color: var(--accent-color);
+}
+
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 998;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(2px);
+}
+
+.sidebar-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -400px; /* Hidden by default */
+    width: 350px;
+    height: 100vh;
+    background: var(--surface-color);
+    z-index: 999;
+    padding: 2rem;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+    transition: right 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.sidebar.active {
+    right: 0;
+}
+
+/* Sidebar Header */
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 1rem;
+}
+
+.sidebar-header h2 {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.3s;
+}
+
+.close-btn:hover {
+    color: var(--accent-color);
+}
+
+/* Sidebar Grid */
+.sidebar-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.sidebar-item {
+    background: #252525;
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    height: 100px;
+    text-align: left;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.sidebar-item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+}
+
+.sidebar-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.sidebar-item:hover img {
+    opacity: 0.3;
+}
+
+.sidebar-item span {
+    position: relative;
+    z-index: 2;
+    padding: 0.75rem;
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}

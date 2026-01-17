@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NewsApp | Staying Updated</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="app-header">
+        <div class="logo">Fast<span class="highlight">News</span></div>
+        <nav class="category-nav">
+            <button class="nav-btn active" data-category="anime">Anime</button>
+            <button class="nav-btn" data-category="entertainment">Entertainment</button>
+            <button class="nav-btn" data-category="general">General</button>
+            <button class="nav-btn menu-btn" id="menu-btn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Sidebar -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>Explore</h2>
+            <button class="close-btn" id="close-btn">&times;</button>
+        </div>
+        <div class="sidebar-grid">
+            <!-- Items injected here or hardcoded -->
+            <button class="sidebar-item" data-category="technology">
+                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=200&auto=format&fit=crop" alt="Technology">
+                <span>Technology</span>
+            </button>
+            <button class="sidebar-item" data-category="gaming">
+                <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=200&auto=format&fit=crop" alt="Gaming">
+                <span>Gaming</span>
+            </button>
+            <button class="sidebar-item" data-category="sports">
+                <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=200&auto=format&fit=crop" alt="Sports">
+                <span>Sports</span>
+            </button>
+            <button class="sidebar-item" data-category="science">
+                <img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?q=80&w=200&auto=format&fit=crop" alt="Science">
+                <span>Science</span>
+            </button>
+            <button class="sidebar-item" data-category="health">
+                <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=200&auto=format&fit=crop" alt="Health">
+                <span>Health</span>
+            </button>
+            <button class="sidebar-item" data-category="politics">
+                <img src="https://bpac.in/wp-content/uploads/2020/07/BPAC_Main.png" alt="Politics">
+                <span>Politics</span>
+            </button>
+            <button class="sidebar-item" data-category="fashion">
+                <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=200&auto=format&fit=crop" alt="Fashion">
+                <span>Fashion</span>
+            </button>
+            <button class="sidebar-item" data-category="travel">
+                <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=200&auto=format&fit=crop" alt="Travel">
+                <span>Travel</span>
+            </button>
+             <button class="sidebar-item" data-category="music">
+                <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=200&auto=format&fit=crop" alt="Music">
+                <span>Music</span>
+            </button>
+             <button class="sidebar-item" data-category="business">
+                <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=200&auto=format&fit=crop" alt="Business">
+                <span>Business</span>
+            </button>
+        </div>
+    </aside>
+
+    <main>
+        <div class="info-container">
+            <button class="info-btn">i</button>
+            <div class="info-tooltip">
+                Developer Note: This application uses a free-tier API to provide the latest updates. If the news is not appearing, it may be because our daily limit of 100 requests has been reached. Please check back tomorrow!
+            </div>
+        </div>
+
+        <div id="news-container" class="news-grid">
+            <!-- News items will be injected here -->
+        </div>
+    </main>
+
+    <footer class="app-footer">
+        <p>Created by: Haider S Vadgamwala</p>
+        <p>Project-6-FrontEnd-News</p>
+        <p class="credits">Powered by <a href="https://newsapi.org" target="_blank">NewsAPI.org</a></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
