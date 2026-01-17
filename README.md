@@ -52,5 +52,5 @@ The application is fully responsive and adapts seamlessly to:
 
 ## What I Learned
 
-*How to use Antigravity
+-How to use Antigravity
 
